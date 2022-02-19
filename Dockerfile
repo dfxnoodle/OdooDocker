@@ -89,7 +89,7 @@ RUN npm install -g rtlcss
 
 # Install Odoo
 RUN curl -k -o /odoo15.deb https://odoo15deb.s3.eu-west-2.amazonaws.com/odoo15.deb \
-    apt install /odoo15.deb \
+    && apt install /odoo15.deb \
     && apt-get update \
     && apt-get -y install --no-install-recommends ./odoo15.deb \
     && rm -rf /var/lib/apt/lists/* odoo15.deb

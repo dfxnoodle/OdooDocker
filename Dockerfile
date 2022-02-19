@@ -85,11 +85,10 @@ RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main' > /et
 RUN npm install -g rtlcss
 
 # Copy Odoo main file
-# COPY odoo15.deb /odoo15.deb
+COPY odoo15.deb /odoo15.deb
 
 # Install Odoo
-RUN curl -k -o /odoo15.deb https://odoo15deb.s3.eu-west-2.amazonaws.com/odoo15.deb \
-    && apt install /odoo15.deb \
+RUN apt install /odoo15.deb \
     && apt-get update \
     && apt-get -y install --no-install-recommends ./odoo15.deb \
     && rm -rf /var/lib/apt/lists/* odoo15.deb
@@ -100,7 +99,6 @@ COPY ./odoo.conf /etc/odoo/
 
 # Set permissions and Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
 RUN chown odoo /etc/odoo/odoo.conf \
-    && chown odoo /entrypoint.sh \
     && mkdir -p /mnt/extra-addons \
     && chown -R odoo /mnt/extra-addons
 VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]

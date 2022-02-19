@@ -4,3 +4,8 @@ About this Repo
 This is the Git repo of a customized verison of official Docker image for [Odoo](https://registry.hub.docker.com/_/odoo/). See the Hub page for the full readme on how to use the Docker image and for information regarding contributing and issues.
 
 The full readme is generated over in [docker-library/docs](https://github.com/docker-library/docs), specifically in [docker-library/docs/odoo](https://github.com/docker-library/docs/tree/master/odoo).
+
+This is an example docker build image command with an image name: odoo-docker-15 and version 0.1
+```
+docker build -t odoo-docker-15:0.1 .
+```

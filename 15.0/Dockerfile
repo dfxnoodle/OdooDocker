@@ -53,15 +53,14 @@ RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main' > /et
 # Install rtlcss (on Debian buster)
 RUN npm install -g rtlcss
 
+# Copy Odoo main file
+COPY odoo15.deb /
+
 # Install Odoo
-ENV ODOO_VERSION 15.0
-ARG ODOO_RELEASE=20220217
-ARG ODOO_SHA=1cd3850c04e63652b2c66b73d8e8d7e013777e2f
-RUN curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}.${ODOO_RELEASE}_all.deb \
-    && echo "${ODOO_SHA} odoo.deb" | sha1sum -c - \
+RUN sudo apt install /odoo15.deb \
     && apt-get update \
-    && apt-get -y install --no-install-recommends ./odoo.deb \
-    && rm -rf /var/lib/apt/lists/* odoo.deb
+    && apt-get -y install --no-install-recommends ./odoo15.deb \
+    && rm -rf /var/lib/apt/lists/* odoo15.deb
 
 # Copy entrypoint script and Odoo configuration file
 COPY ./entrypoint.sh /

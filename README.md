@@ -15,6 +15,6 @@ docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -e POSTGRES_DB=pos
 ```
 **Then run a odoo docker image**
 ```
-docker run -p 8069:8069 --name odoo --link db:db -t odoo-docker-15
+docker run -d -p 8069:8069 --name odoo --link db:db -t odoo-docker-15
 ```
 Change the port to an available one

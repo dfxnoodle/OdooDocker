@@ -5,6 +5,10 @@ This is the Git repo of a customized verison of official Docker image for [Odoo]
 
 The full readme is generated over in [docker-library/docs](https://github.com/docker-library/docs), specifically in [docker-library/docs/odoo](https://github.com/docker-library/docs/tree/master/odoo).
 
+**Manually download the package file into the directory**
+```
+curl -k -o odoo15.deb https://odoo15deb.s3.eu-west-2.amazonaws.com/odoo15.deb
+```
 **This is an example docker build image command with an image name: odoo-docker-15 and version 0.1**
 ```
 docker build -t odoo-docker-15:0.1 .

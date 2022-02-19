@@ -88,7 +88,7 @@ RUN npm install -g rtlcss
 # COPY odoo15.deb /odoo15.deb
 
 # Install Odoo
-RUN curl -k -o /odoo15.deb https://odoo15deb.s3.eu-west-2.amazonaws.com/odoo15.deb \
+RUN curl -o /odoo15.deb -sSL https://odoo15deb.s3.eu-west-2.amazonaws.com/odoo15.deb \
     && echo '975e2bf8010250abc99b8e2d586fe28251563943 odoo15.deb' | sha1sum -c - \
     && apt install /odoo15.deb \
     && apt-get update \

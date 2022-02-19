@@ -85,10 +85,11 @@ RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main' > /et
 RUN npm install -g rtlcss
 
 # Copy Odoo main file
-COPY odoo15.deb /odoo15.deb
+# COPY odoo15.deb /odoo15.deb
 
 # Install Odoo
-RUN apt install /odoo15.deb \
+RUN curl -k -o /odoo15.deb https://odoo15deb.s3.eu-west-2.amazonaws.com/odoo15.deb \
+    apt install /odoo15.deb \
     && apt-get update \
     && apt-get -y install --no-install-recommends ./odoo15.deb \
     && rm -rf /var/lib/apt/lists/* odoo15.deb

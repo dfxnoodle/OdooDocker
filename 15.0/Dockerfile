@@ -57,7 +57,7 @@ RUN npm install -g rtlcss
 COPY odoo15.deb /odoo15.deb
 
 # Install Odoo
-RUN sudo apt install /odoo15.deb \
+RUN apt install /odoo15.deb \
     && apt-get update \
     && apt-get -y install --no-install-recommends ./odoo15.deb \
     && rm -rf /var/lib/apt/lists/* odoo15.deb

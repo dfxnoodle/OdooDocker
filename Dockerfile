@@ -17,7 +17,9 @@ RUN apt-get update && \
         libssl-dev \
         node-less \
         npm \
+        python3-magic \
         python3-num2words \
+        python3-odf \
         python3-pdfminer \
         python3-pip \
         python3-phonenumbers \
@@ -31,37 +33,38 @@ RUN apt-get update && \
         python3-xlrd \
         python3-xlwt \
         xz-utils \
-        python3-babel \
-        python3-decorator \
-        python3-docutils \
-        python3-gevent \
-        python3-idna \
-        python3-jinja2 \
-        python3-libsass \
-        python3-lxml \
-        python3-mock \
-        python3-ofxparse \
-        python3-openssl \
-        python3-passlib \
-        python3-polib \
-        python3-psutil \
-        python3-psycopg2 \
-        python3-pydot \
-        python3-pypdf2 \
-        python3-reportlab \
-        python3-requests \
-        python3-serial \
-        python3-stdnum \
-        python3-usb \
-        python3-werkzeug \
-        python3-xlsxwriter \
-        python3-zeep \
-        fonts-dejavu-core \
-        fonts-inconsolata \
-        fonts-font-awesome \
-        fonts-roboto-unhinted \
-        gsfonts \
-        python3-freezegun \
+        # These deps may not be needed in 16
+        # python3-babel \
+        # python3-decorator \
+        # python3-docutils \
+        # python3-gevent \
+        # python3-idna \
+        # python3-jinja2 \
+        # python3-libsass \
+        # python3-lxml \
+        # python3-mock \
+        # python3-ofxparse \
+        # python3-openssl \
+        # python3-passlib \
+        # python3-polib \
+        # python3-psutil \
+        # python3-psycopg2 \
+        # python3-pydot \
+        # python3-pypdf2 \
+        # python3-reportlab \
+        # python3-requests \
+        # python3-serial \
+        # python3-stdnum \
+        # python3-usb \
+        # python3-werkzeug \
+        # python3-xlsxwriter \
+        # python3-zeep \
+        # fonts-dejavu-core \
+        # fonts-inconsolata \
+        # fonts-font-awesome \
+        # fonts-roboto-unhinted \
+        # gsfonts \
+        # python3-freezegun \
     && curl -o wkhtmltox.deb -sSL https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.buster_amd64.deb \
     && echo 'ea8277df4297afc507c61122f3c349af142f31e5 wkhtmltox.deb' | sha1sum -c - \
     && apt-get install -y --no-install-recommends ./wkhtmltox.deb \
@@ -85,12 +88,13 @@ RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main' > /et
 RUN npm install -g rtlcss
 
 # Install Odoo
-RUN curl -o /odoo15.deb -sSL https://odoo15deb.s3.eu-west-2.amazonaws.com/odoo15.deb \
-    && echo '975e2bf8010250abc99b8e2d586fe28251563943 odoo15.deb' | sha1sum -c - \
-    && apt install /odoo15.deb \
+ARG ODOO_SHA=ff1b8aeea00a351b1acc3b0aa39deaf43929a8cc
+RUN curl -o /odoo.deb -sSL https://etihadrailbom.blob.core.windows.net/odoo16/odoo_16.0+e.latest_all.deb \
+    && echo "${ODOO_SHA} odoo.deb" | sha1sum -c - \
+    && apt install /odoo.deb \
     && apt-get update \
-    && apt-get -y install --no-install-recommends ./odoo15.deb \
-    && rm -rf /var/lib/apt/lists/* odoo15.deb
+    && apt-get -y install --no-install-recommends ./odoo.deb \
+    && rm -rf /var/lib/apt/lists/* odoo.deb
 
 # Copy entrypoint script and Odoo configuration file
 COPY ./entrypoint.sh /

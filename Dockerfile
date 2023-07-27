@@ -36,13 +36,49 @@ RUN apt-get update && \
         build-essential \
         libpq-dev \
         python3-dev \
+        # Necessary deps
+        python3-babel \
+        python3-decorator \
+        python3-docutils \
+        python3-gevent \
+        python3-greenlet \
+        python3-idna \
+        python3-jinja2 \
+        python3-libsass \
+        python3-lxml \
+        python3-markupsafe \
+        python3-ofxparse \
+        python3-openssl \
+        python3-passlib \
+        python3-polib \
+        python3-psutil \
+        python3-psycopg2 \
+        python3-pydot \
+        python3-pypdf2 \
+        python3-reportlab \
+        python3-requests \
+        python3-serial \
+        python3-stdnum \
+        python3-tz \
+        python3-urllib3 \
+        python3-usb \
+        python3-werkzeug \
+        python3-xlsxwriter \
+        python3-zeep \
+        fonts-dejavu-core \
+        fonts-freefont-ttf \
+        fonts-freefont-otf \
+        fonts-noto-core \
+        fonts-inconsolata \
+        fonts-font-awesome \
+        fonts-roboto-unhinted \
+        gsfonts \
+        python3-freezegun \
+        postgresql \
     && curl -o wkhtmltox.deb -sSL https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.buster_amd64.deb \
     && echo 'ea8277df4297afc507c61122f3c349af142f31e5 wkhtmltox.deb' | sha1sum -c - \
     && apt-get install -y --no-install-recommends ./wkhtmltox.deb \
     && rm -rf /var/lib/apt/lists/* wkhtmltox.deb
-    
-# Install Python dependencies
-RUN python3 -m pip install Babel decorator docutils ebaysdk feedparser gevent greenlet html2text Jinja2 lxml Mako MarkupSafe mock num2words ofxparse passlib Pillow psutil psycogreen psycopg2 pydot pyparsing PyPDF2 pyserial python-dateutil python-openid pytz pyusb PyYAML qrcode reportlab requests six suds-jurko vatnumber vobject Werkzeug XlsxWriter xlwt xlrd polib
 
 # install latest postgresql-client
 RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main' > /etc/apt/sources.list.d/pgdg.list \

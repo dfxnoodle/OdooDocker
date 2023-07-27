@@ -7,18 +7,18 @@ The full readme is generated over in [docker-library/docs](https://github.com/do
 
 **Manually download the package file into the directory if necessary**
 ```
-curl -k -o odoo15.deb https://odoo15deb.s3.eu-west-2.amazonaws.com/odoo15.deb
+curl -k -o odoo.deb https://etihadrailbom.blob.core.windows.net/odoo16/odoo_16.0+e.latest_all.deb
 ```
-**This is an example docker build image command with an image name: odoo-docker-15 and version 0.1**
+**This is an example docker build image command with an image name: odoo-docker-16 and version 0.1**
 ```
-docker build -t odoo-docker-15:0.1 .
+docker build -t odoo-docker-16:0.1 .
 ```
 **Before starting odoo, Start a PostgreSQL server**
 ```
-docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -e POSTGRES_DB=postgres --name db postgres:14
+docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -e POSTGRES_DB=postgres --name db postgres:15
 ```
 **Then run a odoo docker image**
 ```
-docker run -d -p 8069:8069 --name odoo --link db:db -t odoo-docker-15:0.1
+docker run -d -p 8069:8069 --name odoo --link db:db -t odoo-docker-16:0.1
 ```
 Remember to change the name and port to an unused one

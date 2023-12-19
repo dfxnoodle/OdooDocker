@@ -7,7 +7,7 @@ The full readme is generated over in [docker-library/docs](https://github.com/do
 
 **Manually download the package file into the directory if necessary**
 ```
-curl -k -o odoo.deb https://etihadrailbom.blob.core.windows.net/odoo16/odoo_16.0+e.latest_all.deb
+curl -k -o odoo.deb https://{domain}/odoo16/odoo_16.0+e.latest_all.deb
 ```
 **This is an example docker build image command with an image name: odoo-docker-16 and version 0.1**
 ```
